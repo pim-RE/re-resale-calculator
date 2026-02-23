@@ -1557,6 +1557,7 @@ function updateResultsDisplay(r) {
 function revealResults() {
   var r = calculate();
   updateResultsDisplay(r);
+  setTimeout(sendLeadNotification, 2000); // wait 2s so calculate() has settled
   var cards = document.querySelectorAll('.result-card');
   for (var i = 0; i < cards.length; i++) {
     (function(card, idx) {
@@ -2372,6 +2373,57 @@ function buildPDF() {
 
   // ── Save ──────────────────────────────────────────────────────────────────
   doc.save('RE-Resale-Report-' + new Date().toISOString().slice(0,10) + '.pdf');
+}
+
+// ── LEAD NOTIFICATION ────────────────────────────────────────────────────────
+// Replace YOUR_FORMSPREE_ID below with your actual Formspree form ID
+// Get one free at formspree.io — takes 2 minutes
+var FORMSPREE_ID = 'xqedgdwd';
+var notificationSent = false;
+
+function sendLeadNotification() {
+  if (notificationSent) return; // only send once per session
+  if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') return; // not configured yet
+
+  var r = calculate();
+  var d = getInputs();
+  var catEl = document.getElementById('category');
+  var catText = catEl ? catEl.options[catEl.selectedIndex].text : '';
+  var verdictEl = document.getElementById('resaleVerdict');
+  var verdict = verdictEl ? verdictEl.textContent : '';
+  var gradeEl = document.getElementById('resaleDialLetter');
+  var grade = gradeEl ? gradeEl.textContent : '?';
+  var scenarioEl = document.querySelector('.scenario-btn.active');
+  var scenario = scenarioEl ? scenarioEl.textContent.trim() : 'Realistic';
+
+  var payload = {
+    _subject: 'New Resale Calculator Lead — ' + grade + ' (' + verdict + ')',
+    _replyto: 'no-reply@retheagency.com',
+    grade: grade + ' — ' + verdict,
+    scenario: scenario,
+    category: catText,
+    retail_price: '€ ' + d.retailPrice,
+    resale_price: '€ ' + d.resalePrice,
+    units_sold_per_year: Math.round(d.unitsSold),
+    annual_resale_revenue: '€ ' + Math.round(r.annualRevenue).toLocaleString('nl-NL'),
+    net_profit_per_unit: '€ ' + Math.round(r.netProfitPerUnit),
+    resale_roi: isFinite(r.roi) ? r.roi.toFixed(0) + '%' : '-',
+    sellable_units: Math.round(r.sellableUnits),
+    return_rate: Math.round(d.returnRate * 100) + '%',
+    buyback_enabled: document.getElementById('buybackEnabled') && document.getElementById('buybackEnabled').checked ? 'Yes' : 'No',
+    timestamp: new Date().toLocaleString('nl-NL', { timeZone: 'Europe/Amsterdam' }),
+    _gotcha: '' // honeypot spam filter
+  };
+
+  fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    if (res.ok) { notificationSent = true; }
+  })
+  .catch(function() {}); // fail silently — never interrupt the user experience
 }
 
 updateCalc();

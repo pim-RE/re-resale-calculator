@@ -155,8 +155,71 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
 .btn-cta-ghost{background:transparent;color:var(--text);padding:15px 24px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid var(--border-active);font-family:'InstrumentSans',sans-serif;transition:all 0.18s;}
 .btn-cta-ghost:hover{border-color:var(--accent);color:var(--accent);}
 
-@media(max-width:768px){header{padding:0 20px;}.hero{padding:40px 20px 36px;}.calc-wrapper{grid-template-columns:1fr;padding:0 20px 80px;}.fields-grid{grid-template-columns:1fr;}.results-grid{grid-template-columns:1fr 1fr;}.summary-card{position:static;}#step-results{grid-column:1;}.step-pip-label{display:none!important;}}
-@media(max-width:480px){.results-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  header { padding: 0 16px; }
+  .header-inner { height: 56px; }
+  .hero { padding: 32px 16px 28px; }
+  .hero h1 { font-size: 28px; }
+  .hero p { font-size: 14px; }
+  .calc-wrapper { grid-template-columns: 1fr; padding: 0 16px 80px; gap: 16px; }
+  .summary-card { position: static; top: auto; }
+  #step-results { grid-column: 1; }
+  .fields-grid { grid-template-columns: 1fr; gap: 12px; }
+  .results-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .result-card { padding: 16px; }
+  .r-value { font-size: 22px; }
+  .step-pip-label { display: none !important; }
+  .step-pips { gap: 6px; }
+  .step-nav-btns { flex-direction: column; gap: 8px; }
+  .step-nav-btns .btn { width: 100%; justify-content: center; }
+  .scenario-toggle { flex-wrap: wrap; gap: 6px; }
+  .scenario-btn { flex: 1; min-width: 80px; text-align: center; }
+  .benefit-grid { grid-template-columns: 1fr; }
+  .score-row { grid-template-columns: 110px 1fr 28px; }
+  .score-hero { flex-direction: column; padding: 20px; gap: 16px; }
+  .score-hero-verdict { font-size: 30px; }
+  .score-hero-right { flex-direction: row; align-items: center; gap: 16px; }
+  .levers-grid { grid-template-columns: 1fr; }
+  .levers-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .btn-levers-cta { width: 100%; text-align: center; }
+  .compare-block { margin-bottom: 20px; }
+  .compare-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .compare-values { font-size: 14px; }
+  .compare-val-new { font-size: 18px; }
+  .cta-section { flex-direction: column; }
+  .cta-photo-col { width: 100%; height: 220px; }
+  .cta-content { padding: 24px 20px; }
+  .cta-content h3 { font-size: 20px; }
+  .cta-actions { flex-direction: column; gap: 10px; }
+  .cta-actions .btn-cta, .cta-actions .btn-cta-ghost { width: 100%; text-align: center; }
+  .roadmap-steps { gap: 10px; }
+  .roadmap-step { padding: 14px; }
+  .site-footer { flex-direction: column; padding: 16px; gap: 12px; }
+  .footer-links { flex-wrap: wrap; gap: 12px; }
+  .buyback-fields { grid-template-columns: 1fr; }
+  .split-visual { grid-column: 1; }
+  .strategic-summary-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .score-dial-outer { width: 80px; height: 80px; }
+  .score-dial-grade { font-size: 34px; }
+  .score-pill { font-size: 10px; }
+  .vat-note { font-size: 12px; }
+}
+@media(max-width:480px){
+  .results-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 22px; }
+  .r-value { font-size: 20px; }
+  .score-hero-verdict { font-size: 24px; }
+  .cta-content h3 { font-size: 18px; }
+  .btn-cta { font-size: 13px; padding: 12px 18px; }
+  .strategic-section { padding: 18px; }
+  .levers-panel { padding: 18px; }
+  .comparison-section, .roadmap { padding: 18px; }
+  .section-title { font-size: 16px; }
+  .star { font-size: 22px; }
+  .score-hero { padding: 16px; }
+  .score-dial-outer { width: 70px; height: 70px; }
+  .score-dial-grade { font-size: 28px; }
+}
 
 
 
@@ -947,10 +1010,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
             <div class="input-wrap"><span class="currency">&#8364;</span><input type="number" id="retailPrice" value="500" min="0" oninput="updateCalc()"></div>
             <div class="benchmark">Avg. consumer product: <strong>&#8364;200&#8211;800</strong></div>
           </div>
-          <div class="field">
-            <div class="field-label">Production Cost <span class="tooltip-icon" data-tip="Your cost of goods sold (COGS) - what it costs to make or source one unit.">?</span></div>
-            <div class="input-wrap"><span class="currency">&#8364;</span><input type="number" id="productionCost" value="180" min="0" oninput="updateCalc()"></div>
-          </div>
+
           <div class="field">
             <div class="field-label">Residual Value <span class="tooltip-icon" data-tip="Estimated market value after first use. Typically 20&#8211;60% of retail for well-maintained goods.">?</span></div>
             <div class="input-wrap"><span class="currency">&#8364;</span><input type="number" id="residualValue" value="200" min="0" oninput="syncResalePrice();updateCalc()"></div>
@@ -1010,18 +1070,13 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
           </div>
 
           <div class="field full">
-            <div class="buyback-toggle-row">
-              <div class="field-label" style="margin-bottom:0">
-                Buyback Programme
-                <span class="tooltip-icon" data-tip="Offer customers cash or store vouchers in exchange for returning their product. Increases return rates and keeps customers in your ecosystem.">?</span>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" id="buybackEnabled" onchange="toggleBuyback()">
-                <div class="toggle-track"></div>
-              </label>
+            <div class="field-label">
+              Buyback Programme
+              <span class="tooltip-icon" data-tip="Offer customers cash or store vouchers in exchange for returning their product. Increases return rates and keeps customers in your ecosystem.">?</span>
             </div>
+            <input type="hidden" id="buybackEnabled" value="on">
 
-            <div class="buyback-fields" id="buybackFields">
+            <div class="buyback-fields visible" id="buybackFields">
               <div class="field" style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 18px">
                 <div class="field-label">Buyback Value <span class="tooltip-icon" data-tip="What you offer the customer per unit returned. Auto-suggested at 20% of residual value - adjust to match your margin.">?</span></div>
                 <div class="input-wrap">
@@ -1163,7 +1218,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
 
           <div class="compare-block">
             <div class="compare-meta">
-              <span class="compare-label">Resale Margin</span>
+              <span class="compare-label">Annual Net Profit from Resale</span>
               <div class="compare-values">
                 <span class="compare-val-old" id="cMarOld">-</span>
                 <svg class="compare-arrow" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 6h17M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1172,11 +1227,11 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
             </div>
             <div class="compare-bars">
               <div class="compare-bar-row">
-                <span class="compare-bar-tag">New product</span>
+                <span class="compare-bar-tag">Cost</span>
                 <div class="compare-bar-track"><div class="compare-bar-fill baseline" id="barMarOld"></div></div>
               </div>
               <div class="compare-bar-row">
-                <span class="compare-bar-tag accent">Resale</span>
+                <span class="compare-bar-tag accent">Net profit</span>
                 <div class="compare-bar-track"><div class="compare-bar-fill accent" id="barMarNew"></div></div>
               </div>
             </div>
@@ -1419,7 +1474,6 @@ function updateGradeDisplay() {
 function getInputs() {
   return {
     retailPrice: parseFloat(document.getElementById('retailPrice').value) || 0,
-    productionCost: parseFloat(document.getElementById('productionCost').value) || 0,
     residualValue: parseFloat(document.getElementById('residualValue').value) || 0,
     lifespan: parseFloat(document.getElementById('lifespan').value) || 1,
     unitsSold: parseFloat(document.getElementById('unitsSold').value) || 0,
@@ -1447,9 +1501,9 @@ function calculate(multiplier) {
   var netProfitPerUnit = d.resalePrice - totalCostPerUnit;
   var annualRevenue = sellableUnits * d.resalePrice;
   var annualNetProfit = sellableUnits * netProfitPerUnit;
-  var currentMargin = d.retailPrice > 0 ? ((d.retailPrice - d.productionCost) / d.retailPrice) * 100 : 0;
+  var currentMargin = 0; // production cost removed
   var resaleMargin = d.residualValue > 0 ? (netProfitPerUnit / d.residualValue) * 100 : 0;
-  var currentAnnualProfit = d.unitsSold * (d.retailPrice - d.productionCost);
+  var currentAnnualProfit = 0; // production cost removed
   var totalProfit = currentAnnualProfit + annualNetProfit;
   var totalRevenue = d.unitsSold * d.retailPrice + annualRevenue;
   var newMargin = resaleMargin;
@@ -1531,7 +1585,7 @@ function updateResultsDisplay(r) {
   document.getElementById('rROI').style.color = r.roi > 50 ? 'var(--green)' : r.roi > 0 ? 'var(--amber)' : 'var(--red)';
 
   var buybackEl = document.getElementById('buybackEnabled');
-  if (buybackEl && buybackEl.checked) {
+  if (buybackEl) {
     updateBuybackImpactText(
       getBuybackCostPerUnit(),
       getBuybackReturnBoost(),
@@ -1541,11 +1595,12 @@ function updateResultsDisplay(r) {
   }
   document.getElementById('cRevOld').textContent = fmt(r.currentAnnualRevenue);
   document.getElementById('cRevNew').textContent = fmt(r.newTotalRevenue);
-  document.getElementById('cMarOld').textContent = r.currentMargin.toFixed(1) + '%';
-  document.getElementById('cMarNew').textContent = r.newMargin.toFixed(1) + '%';
+  var totalCosts = r.sellableUnits * r.totalCostPerUnit;
+  document.getElementById('cMarOld').textContent = fmt(totalCosts);
+  document.getElementById('cMarNew').textContent = fmt(r.annualNetProfit);
 
   var revPct = r.currentAnnualRevenue > 0 ? Math.min((r.annualRevenue / r.currentAnnualRevenue) * 100, 100) : 5;
-  var marPct = Math.min(Math.max(r.newMargin, 0), 100);
+  var marPct = r.annualRevenue > 0 ? Math.min((r.annualNetProfit / r.annualRevenue) * 100, 100) : 5;
 
   setTimeout(function() {
     document.getElementById('barRevNew').style.width = Math.max(revPct, 3) + '%';
@@ -1826,7 +1881,7 @@ function updateResalePriceBenchmark() {
 }
 
 function getBuybackCostPerUnit() {
-  var enabled = document.getElementById('buybackEnabled').checked;
+  var enabled = true;
   if (!enabled) return 0;
   var buybackVal = parseFloat(document.getElementById('buybackValue').value) || 0;
   var voucherPct = parseFloat(document.getElementById('voucherPct').value) / 100;
@@ -1839,7 +1894,7 @@ function getBuybackCostPerUnit() {
 }
 
 function getBuybackReturnBoost() {
-  var enabled = document.getElementById('buybackEnabled').checked;
+  var enabled = true;
   if (!enabled) return 0;
   // returnBoost is now the TARGET return rate, return the delta above base
   var target = parseFloat(document.getElementById('returnBoost').value) / 100 || 0;
@@ -2173,7 +2228,6 @@ function buildPDF() {
 
   var inputs = [
     ['Retail Price', fmtE(d.retailPrice)],
-    ['Production Cost', fmtE(d.productionCost)],
     ['Residual Value', fmtE(d.residualValue)],
     ['Resale Price', fmtE(d.resalePrice)],
     ['Units Sold / Yr', Math.round(d.unitsSold) + ' units'],

@@ -203,22 +203,90 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
   .score-dial-grade { font-size: 34px; }
   .score-pill { font-size: 10px; }
   .vat-note { font-size: 12px; }
+
+  /* Comparison section */
+  .compare-block { margin-bottom: 20px; }
+  .compare-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .compare-values { gap: 8px; }
+  .compare-val-old { font-size: 14px; }
+  .compare-val-new { font-size: 18px; }
+  .compare-bar-row { gap: 8px; }
+  .compare-bar-tag { width: 60px; font-size: 9px; }
+
+  /* Buyback fields */
+  .buyback-fields { grid-template-columns: 1fr !important; }
+  .split-visual { grid-column: 1 !important; }
+
+  /* Fields grid inside steps */
+  .field.full { grid-column: 1; }
+
+  /* Step header */
+  .step-header { padding: 20px 16px 0; }
+  .step-title { font-size: 18px; }
+  .step-desc { font-size: 13px; }
+
+  /* Sticky summary */
+  .summary-sidebar { display: none; }
+  .summary-card { display: none; }
+
+  /* Score hero on results */
+  .score-hero { flex-direction: column !important; padding: 20px !important; gap: 16px !important; }
+  .score-hero-right { flex-direction: row !important; align-items: center !important; gap: 16px !important; }
+  .score-hero-verdict { font-size: 28px !important; }
+
+  /* KPI cards */
+  .results-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .r-value { font-size: 20px; }
+
+  /* Strategic section */
+  .benefit-grid { grid-template-columns: 1fr !important; }
+  .star-row { flex-wrap: wrap; }
+
+  /* Roadmap */
+  .roadmap-steps { flex-direction: column; gap: 0; }
+  .roadmap-step { border-left: 2px solid var(--border); border-top: none; margin-left: 16px; padding-left: 16px; }
+  .roadmap-step:first-child { border-top: none; }
+
+  /* PDF/export button */
+  .btn-cta-ghost { width: 100%; text-align: center; margin-top: 8px; }
 }
 @media(max-width:480px){
   .results-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 22px; }
-  .r-value { font-size: 20px; }
-  .score-hero-verdict { font-size: 24px; }
-  .cta-content h3 { font-size: 18px; }
-  .btn-cta { font-size: 13px; padding: 12px 18px; }
-  .strategic-section { padding: 18px; }
-  .levers-panel { padding: 18px; }
-  .comparison-section, .roadmap { padding: 18px; }
-  .section-title { font-size: 16px; }
-  .star { font-size: 22px; }
-  .score-hero { padding: 16px; }
-  .score-dial-outer { width: 70px; height: 70px; }
-  .score-dial-grade { font-size: 28px; }
+  .hero h1 { font-size: 20px; }
+  .hero p { font-size: 13px; }
+  .r-value { font-size: 18px; }
+  .r-label { font-size: 10px; }
+  .score-hero-verdict { font-size: 22px !important; }
+  .cta-content h3 { font-size: 17px; }
+  .btn-cta { font-size: 13px; padding: 12px 16px; width: 100%; text-align: center; }
+  .btn-cta-ghost { font-size: 13px; width: 100%; text-align: center; }
+  .strategic-section { padding: 16px; }
+  .levers-panel { padding: 16px; }
+  .comparison-section, .roadmap { padding: 16px; }
+  .section-title { font-size: 15px; }
+  .star { font-size: 20px; }
+  .score-hero { padding: 14px !important; }
+  .score-dial-outer { width: 64px; height: 64px; }
+  .score-dial-grade { font-size: 24px; }
+  .compare-bar-tag { width: 54px; font-size: 8.5px; }
+  .compare-val-old { font-size: 13px; }
+  .compare-val-new { font-size: 16px; }
+  .lever-card { padding: 14px; }
+  .lever-title { font-size: 12px; }
+  .lever-desc { font-size: 11px; }
+  .benefit-card { padding: 14px; }
+  .benefit-title { font-size: 13px; }
+  .benefit-desc { font-size: 11px; }
+  .score-row { grid-template-columns: 90px 1fr 22px; }
+  .strategic-score-num { font-size: 28px; }
+  .site-footer { padding: 14px; }
+  .footer-link { font-size: 11px; }
+  .footer-copy { font-size: 11px; }
+  .cta-photo-col { height: 180px; }
+  .cta-content { padding: 18px 16px; }
+  .vat-note { font-size: 11px; padding: 12px 14px; }
+  .roadmap-step { padding: 12px 14px; }
+  .step-phase { font-size: 10px; }
 }
 
 
@@ -1172,9 +1240,9 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
             <div class="r-desc">Revenue minus all resale costs per unit</div>
           </div>
           <div class="result-card" id="rc3">
-            <div class="r-label">Profit Uplift</div>
+            <div class="r-label">Resale Net Margin</div>
             <div class="r-value" id="rMarginUplift">-</div>
-            <div class="r-desc">Additional annual profit from resale vs. your current profit</div>
+            <div class="r-desc">Net profit as a percentage of total resale revenue</div>
           </div>
           <div class="result-card" id="rc4">
             <div class="r-label">Sellable Returns / Year</div>
@@ -1218,7 +1286,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
 
           <div class="compare-block">
             <div class="compare-meta">
-              <span class="compare-label">Annual Net Profit from Resale</span>
+              <span class="compare-label">Resale Cost vs Net Profit</span>
               <div class="compare-values">
                 <span class="compare-val-old" id="cMarOld">-</span>
                 <svg class="compare-arrow" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 6h17M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1227,7 +1295,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15);}
             </div>
             <div class="compare-bars">
               <div class="compare-bar-row">
-                <span class="compare-bar-tag">Cost</span>
+                <span class="compare-bar-tag">Total cost</span>
                 <div class="compare-bar-track"><div class="compare-bar-fill baseline" id="barMarOld"></div></div>
               </div>
               <div class="compare-bar-row">
@@ -1507,7 +1575,7 @@ function calculate(multiplier) {
   var totalProfit = currentAnnualProfit + annualNetProfit;
   var totalRevenue = d.unitsSold * d.retailPrice + annualRevenue;
   var newMargin = resaleMargin;
-  var marginUplift = currentAnnualProfit > 0 ? (annualNetProfit / currentAnnualProfit) * 100 : 0;
+  var marginUplift = annualRevenue > 0 ? (annualNetProfit / annualRevenue) * 100 : 0;
   var roi = (totalCostPerUnit * sellableUnits) > 0 ? (annualNetProfit / (totalCostPerUnit * sellableUnits)) * 100 : 0;
   return {
     sellableUnits: sellableUnits,
@@ -1598,9 +1666,12 @@ function updateResultsDisplay(r) {
   var totalCosts = r.sellableUnits * r.totalCostPerUnit;
   document.getElementById('cMarOld').textContent = fmt(totalCosts);
   document.getElementById('cMarNew').textContent = fmt(r.annualNetProfit);
+  document.getElementById('cMarNew').style.color = r.annualNetProfit > 0 ? 'var(--accent)' : 'var(--red)';
 
   var revPct = r.currentAnnualRevenue > 0 ? Math.min((r.annualRevenue / r.currentAnnualRevenue) * 100, 100) : 5;
-  var marPct = r.annualRevenue > 0 ? Math.min((r.annualNetProfit / r.annualRevenue) * 100, 100) : 5;
+  var maxVal = Math.max(totalCosts, r.annualNetProfit, 1);
+  var marPct = Math.min(Math.max(r.annualNetProfit / maxVal * 100, 0), 100);
+  var costPct = Math.min(totalCosts / maxVal * 100, 100);
 
   setTimeout(function() {
     document.getElementById('barRevNew').style.width = Math.max(revPct, 3) + '%';
